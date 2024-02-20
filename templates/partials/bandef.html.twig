@@ -1,0 +1,8 @@
+    {% block stylesheets %}<link rel="stylesheet" href="{{asset("assets/css/bandef.css")}}">{% endblock %}
+    {% if Unread.annonces %}
+        <div class="hold">
+            <div class="bandef text-danger">
+                {{Unread.annonces.content}}                   
+            </div> 
+        </div>
+    {% endif %} 

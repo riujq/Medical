@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block body %} 
+        <div class="container py-3">   
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 style="font-size: 30px; font-family: UniversLTC; color: rgba(4, 133, 202, 0.824);">Votre commande</h1>
+                    <Table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col-4">Produit</th>
+                                <th scope="col-4">Prix</th>
+                                <th scope="col-4">Quantité</th>
+                                <th scope="col-4">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td>{{item.product.Titre}}</td>
+                                <td>{{item.product.Prix}} AR</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.product.Prix*item.quantity}} AR</td>      
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right">Prix Total:</td>
+                                <td>{{T}} AR</td>
+                            </tr>
+                        </tfoot>
+                    </Table>
+                </div>  
+                <br><br>
+                <div class="col-md-6">
+                    <h2 style="font-size: 30px; font-family: UniversLTC; color: rgba(4, 133, 202, 0.824);">Verifier vos informations</h2>
+                        {{ form_start(form) }}
+                        {{ form_row(form.Adress,{'label':'Adresse de livraison','attr':{'placeholder':"Entrer l'adresse de livraison"}}) }}
+                        {{ form_row(form.PhoneNumber,{'label':'Téléphone','attr':{'placeholder':"Ex pour telma:261+34suivi des 7 chiffres"}}) }}
+                        <button class="btn btn-secondary btn-sm" type="submit">Valider la commande</button>
+                        {{ form_end(form) }}
+                </div>         
+            </div>
+        </div>
+{% endblock %}

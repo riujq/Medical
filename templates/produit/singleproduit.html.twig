@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+{% block body %}
+	<div class="container py-3">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        	<ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{path('app_produit')}}">Produits</a></li>
+                <li class="breadcrumb-item"><a href="{{path('id_produit',{'id': produit.sousCategory.category.nom})}}">{{produit.sousCategory.category.nom}}</a></li>
+				<li class="breadcrumb-item"><a href="{{path('find_produit',{'cat': produit.sousCategory.category.nom,'scat':produit.sousCategory.nom})}}">{{produit.sousCategory.nom}}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{produit.nom}}</li>
+            </ol>
+        </nav>
+		<div class="row">
+			<div class="col-md-6">
+				<img src="{{asset ("assets/images/"~produit.Image)}}" alt="{{produit.nom}}" class="img img-fluid" style="maxHeight:250px;maxWidth:200px"><br>
+				<h4 class="text-primary">Description</h4>
+				<p>{{produit.description}}</p>
+			</div>
+			<div class="col-md-6 mt-3 text-center">
+				<h4 class="text-primary">{{produit.nom}} {{produit.sousCategory.nom}}</h4>
+				<h6 class="text-secondary">{{produit.prix}} AR</h6>
+				<h6 class="text-warning">Quantité</h6>
+				<form action="#" method="post">
+					<div class="d-flex my-3 justify-content-center">
+						<a class="btn btn-primary" role="button" id="moins" >
+							<i class="bi bi-dash-lg"></i>
+						</a>
+						<input type="text" id="quantity" class="form-control qt mx-2 w-50 mx-2 text-center" value="1">
+						<a class="btn btn-primary" role="button" id="plus" >
+							<i class="bi bi-plus-lg"></i>
+						</a>
+					</div>					
+					<button type="submit" class="btn btn-warning btn-md">Ajouter au panier
+						<i class="bi bi-cart-fill mx-1"></i>
+					</button>					
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %} <script src="{{asset("assets/JavaScript/singleProduit.js")}}"></script> {% endblock %}

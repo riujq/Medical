@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'acceuil{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{asset("assets/css/home.css")}}">{% endblock %}
+{% block body %}
+
+    <section>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
+            <div class="carousel-indicators">
+                    {% for i in 0.. slides| length - 1 %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ i }}" class="{% if loop.index0 == 0 %} active {% endif %}" aria-current="true" aria-label="Slide {{ i + 1 }}"></button>
+                    {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for slide in slides %}
+                    <div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
+                        <img src="{{asset ("assets/images/"~slide.Image)}}" alt="{{slide.Titre}}" class="d-block object-fit-cover w-100 h-100">
+                        <div class="carousel-caption">
+                            <h5 class="text-white"> {{slide.Titre}} </h5>
+                            <p class="text-white"> {{slide.Description}} </p>                
+                                {% if ( slide.Titre == 'Medicaux') %} <a href="{{path('medicaux')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                {% if ( slide.Titre == 'Labotech') %} <a href="{{path('id_produit',{'id': slide.Titre })}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                {% if ( slide.Titre == 'Sav et Technique') %} <a href="{{path('service')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                {% if ( slide.Titre == 'Calibration et Metrologie') %} <a href="{{path('metrocal')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}                      
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+{% endblock %}

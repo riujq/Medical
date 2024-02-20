@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}contact{% endblock %}
+
+{% block body %}
+        <div class="container p-3">
+            <h4 class="text-center text-primary">Nous Contacter</h4>
+            <div class="offset-md-3 col-md-6 col-sm-12">
+                {{form(form)}}
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-bg-primary mb-2" style="max-width: 18rem;">
+                        <div class="card-header"><h4>SIEGE SOCIAL</h4></div>
+                        <div class="card-body">
+                            <i class="bi bi-geo-alt-fill"></i>                            
+                            <div class="d-flex">
+                                <p>Immeuble TANA 2000, 2ème étage </br>
+                                Route des hydrocarbures Ankorondrano </br>
+                                ANTANANARIVO 101 MADAGASCAR</p>
+                            </div><hr>
+                            <i class="bi bi-telephone-fill"></i>                           
+                            <div class="d-flex">
+                                <p>00 261 22 332 62 / 65 </br> 00 261 34 07 120 12</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <i class="bi bi-envelope-fill"></i>
+                            <p>contact@medical-inter.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-bg-info mb-2" style="max-width: 18rem;">
+                        <div class="card-header"><h4>MAJUNGA</h4></div>
+                        <div class="card-body">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div class="d-flex">
+                                <p>En face librairie de Madagascar </br>
+                                 Près de la station galana Antafana </br>
+                                 Majunga Be </br>
+                                MAHAJANGA 401 </br> MADAGASCAR</p>
+                            </div><hr>
+                            <i class="bi bi-telephone-fill"></i>
+                            <div class="d-fex">                               
+                                <p>00 261 20 62 226 55 </br>
+                                   00 261 34 07 159 42</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <i class="bi bi-envelope-fill"></i>
+                            <p>mjn@medical-inter.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-primary-subtle mb-2" style="max-width: 18rem;">
+                        <div class="card-header"><h4>TAMATAVE</h4></div>
+                        <div class="card-body">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div class="d-flex">
+                                <p>Immeuble NEAMAT	</br>			
+                                Boulevard Ratsimilaho </br>
+                                Ampasimazava</br>
+                                TOAMASINA 501 </br> MADAGASCAR</p>
+                            </div><hr>
+                            <i class="bi bi-telephone-fill"></i>
+                            <div class="d-flex">                               
+                                <p>00 261 20 53 351 16</br>
+                                   00 261 34 07 159 40</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <i class="bi bi-envelope-fill"></i>
+                            <p>tve@medical-inter.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

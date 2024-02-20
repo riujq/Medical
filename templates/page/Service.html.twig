@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center text-primary">
+                    <span style="font-size: 20px;"> SAV et Service Technique </span>
+                </h2>
+                <div class=" text-secondary" style="text-align: justify;">
+                    Nous avons une équipe d’intervention rapide qui vous formera sur l’utilisation de votre matériel  et sera toujours à vos côtés pour intervenir à tout moment.
+                    Ils assureront :</br>
+                    <ul>
+                        <li>l’installation du matériel,</li>
+                        <li>la mise en marche et essai technique,</li>
+                        <li>la formation du personnel utilisateur et techniciens locaux, </li>
+                        <li>la maintenance préventive de vos appareils sous garantie ou sous contrat de maintenance et</li>
+                        <li>la fourniture de pièces détachées et consommables.</li>
+                    </ul>
+                    Doté d’un atelier performant,  équipé d’appareils de mesure et d’outillages spécifiques, le matériel installé est géré informatiquement par GMAO permettant une identification rapide et une traçabilité de l’historique de chaque matériel.
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <img src="{{asset("assets/images/"~cat.image)}}" alt="Categorie" class="img img-fluid" >
+            </div>
+        </div>
+    </div>
+{% endblock %}

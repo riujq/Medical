@@ -1,0 +1,42 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Listes des sous-catégories{% endblock %}
+{% block body %}
+{% include 'admin/_modal.html.twig'%}
+        <div class="card my-2">
+            <div class="card-header">
+                <i class="bi bi-table fs-5 me-1"></i>
+                Listes des sous-catégories
+            </div>
+            <div class="card-body">
+                <Table class="table table-hover table-bordered" id="datatablesSimple">
+                <a href="{{path('admin_souscategory_add')}}" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus-lg"></i> Nouveau sous-catégorie</a>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Catégorie</th>
+                            <th class='text-center'>Action</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                            {% for categorie in categories %}
+                                <tr>
+                                    <td>{{categorie.id}}</td>
+                                    <td>{{categorie.nom}}</td>
+                                    <td> <img src="{{asset ("assets/images/"~categorie.image)}}" alt="{{categorie.nom}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
+                                    <td>{{categorie.category.nom}}</td> 
+                                    <td class='text-center'>
+                                        <a href="{{path('admin_souscategory_edit',{'id':categorie.id})}}" class="btn-sm m-2">
+                                        <i class="bi bi-pencil-square fs-5 text-warning"></i></a>
+                                        <a href="{{path('admin_souscategory_delete',{'id':categorie.id})}}" class="btn-sm m-2">
+                                        <i class="bi bi-trash-fill fs-5 text-danger"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                    </tbody>
+                </Table>
+            </div>
+        </div>
+{% endblock %}

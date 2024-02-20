@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+
+<div class="my-3">
+    <div class="text-center">
+        <h2 class="text-primary">Tout les articles du blog</h2>
+    </div>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card mb-3 shadow-sm" style="height:99%;">
+                    <a href="{{asset("assets/images/"~article.image)}}">
+                    <img src="{{asset("assets/images/"~article.image)}}" alt="{{article.titre}}" style="height:100%;" class="img img-fluid"></a>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>{{article.titre}}</h4>
+                            <p><span style="color: rgb(119, 119, 119); font-size: 1rem;">
+                                publier le {{ article.createdAt | date('d/m/Y \\à H:i') }}</p></span>
+                        </div>
+                        <div class="card-text">
+                            <p>{{article.content}}</p>
+                        </div>
+                        <a href="{{path('blog_article',{'id':article.id})}}" class="btn btn-outline-primary rounded-0 float-end">Commenter</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

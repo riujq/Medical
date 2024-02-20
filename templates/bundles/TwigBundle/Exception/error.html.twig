@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page d'erreur{% endblock %}
+
+{% block body %}
+            <div class="container py-3">
+                <h2>Page indisponible</h2>
+                <p>Désolé,cette page ne semble pas être accessible pour l'instant</p>
+                <a href="{{path('home')}}" class="btn btn-primary">Revenir à la page d'acceuil</a>
+            </div>
+{% endblock %}

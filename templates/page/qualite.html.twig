@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qualite{% endblock %}
+
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-8 container text-secondary" style="text-align: justify;">
+                <h1 class="text-primary text-center">QUALITE </h1>
+                <p style="text-indent:10%"> Savez-vous que Médical International est la première société à Madagascar certifiée ISO 9001:2015 dans la vente et service après-vente des équipements médicaux et laboratoires ?</br></p>
+                <p style="text-indent:10%"> Etant certifiée depuis 2007, notre engagement dans la mise en place d’un système de management de la qualité confirme notre volonté à satisfaire notre clientèle et de répondre au mieux à ses attentes.</br></p>
+                <p style="text-indent:10%"> Améliorer continuellement nos offres et nos services afin de viser l’excellence sont les mots clés de notre quotidien.  </br></p>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-center">
+                    <a href="{{asset("assets/images/MEDICAL INTERNATIONAL_Certificat signé.jpg")}}">
+                    <img src="{{asset("assets/images/MEDICAL INTERNATIONAL_Certificat signé.jpg")}}" alt="Logo-iso-socotec" width="320" height="240" class="img img-fluid"></a>
+                </div>
+            </div>
+        </div>    
+    </div>
+{% endblock %}

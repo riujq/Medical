@@ -1,0 +1,39 @@
+<div class="modal fade" tabindex="-1" aria-hidden="true" id="popModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Promotion</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{% if Unread.promo %}
+                    <div class="card mb-3" style="max-width: 640px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <a href="{{asset("assets/images/"~Unread.promo.image)}}">
+                                <img src="{{asset ("assets/images/"~Unread.promo.image)}}" class="img-fluid rounded-start" alt="{{Unread.promo.nom}}"></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{Unread.promo.nom}}</h5>
+                                    <p class="card-text">{{Unread.promo.description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">Le {{Unread.promo.date | date('d/m/Y')}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				{% else %}
+					. . .
+				{% endif %}
+			</div>
+			<div class="modal-footer">
+				<a href="{{path('id_actu',{'id': 'Promotion' })}}" class="btn btn-primary">
+					Voir tout
+				</a>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulers
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% block javascripts %} <script src="{{asset("assets/JavaScript/popModal.js")}}"></script> {% endblock %}

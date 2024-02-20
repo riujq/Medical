@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Métrologie et Calibration{% endblock %}
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-primary">
+                    <span style="font-size: 20px;"> Métrologie et Calibration </span>
+                </h2>
+                <div class="text-secondary" style="text-align: justify;">
+                    Nous vous proposons un service en laboratoire ou sur site et même l’envoi des équipements à l’étranger pour une certification. <br><br>
+                    <ul>
+                        <li> POUR LA MASSE :<br>
+                        Nous proposons la calibration de vos balances de précision et de paillasse en utilisant un kit de calibration.</li><br>
+                                        
+                        <li> POUR LES THERMOBALANCES :<br>
+                        Nous proposons la calibration de température </li><br>
+                                
+                        <li>POUR LA PRESSION ARTERIELLE :<br>
+                        Nous disposons du DIGITAL PRESSURE INDICATOR KIMO MP115 pour calibrer les tensiomètres manuels</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                    <img src="{{asset("assets/images/"~Slide.image)}}" alt="Categorie" class="img img-fluid" >
+            </div>
+        </div>
+    </div>
+{% endblock %}

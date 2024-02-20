@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier!{% endblock %}
+
+{% block body %}
+
+<div class="container pt-3 pb-3">
+        <h1 class="text-primary">Votre panier</h1>
+        {% if items|length>0 %}
+            <Table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{item.product.Titre}}</td>
+                        <td>{{item.product.Prix}} AR</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.product.Prix*item.quantity}} AR</td>
+                        <td>
+                        <a href="{{path('cart_add',{'id':item.product.id})}}" class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i></a>
+                        <a href="{{path('cart_dec',{'id':item.product.id})}}" class="btn btn-warning btn-sm">
+                        <i class="fa fa-minus"></i></a>
+                        <a href="{{path('cart_del',{'id':item.product.id})}}" class="btn-sm">
+                        <i class="fas fa-trash"></i></a>
+                        </td>           
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right">Total:</td>
+                        <td>{{Total}} AR</td>
+                        <td><a href="{{path('app_checkout')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-chevron-right"></i> Valider le panier </a></td>
+                    </tr>
+                </tfoot>
+            </Table>
+        {% else %}
+            <p>Panier vide!</p>
+        {% endif %}
+        <a href="{{path('app_produit')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-chevron-left"></i> Continuer vos achats</a>
+</div>
+{% endblock %}

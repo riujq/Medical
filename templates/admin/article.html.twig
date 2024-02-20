@@ -1,0 +1,39 @@
+{% extends 'admin.html.twig' %}
+{% block title %}Listes des articles{% endblock %}
+{% block body %}
+        <div class="card my-2">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Listes des articles
+            </div>
+            <div class="card-body">
+                <Table class="table table-hover table-bordered" id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>id</th>                          
+                            <th>Titre</th>
+                            <th>Image</th>
+                            <th>Déscription</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for article in articles %}
+                                <tr>
+                                    <td>{{article.id}}</td>
+                                    <td>{{article.titre}}</td>
+                                    <td> <img src="{{asset ("assets/images/"~article.image)}}"alt="{{article.titre}}" width="120" height="180" itemprop="image" class="img img-fluid"></td>
+                                    <td>{{article.content}}</td>
+                                    <td>
+                                        <a href="{{path('admin_article_edit',{'id':article.id})}}" class="btn-sm edit m-2">
+                                        <i class="fas fa-edit"></i></a>
+                                        <a href="{{path('admin_article_delete',{'id':article.id})}}" class="btn-sm m-2">
+                                        <i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                    </tbody>
+                </Table>
+            </div>
+        </div>
+{% endblock %}

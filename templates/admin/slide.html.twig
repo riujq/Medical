@@ -1,0 +1,42 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Listes des slides{% endblock %}
+{% block body %}
+{% include 'admin/_modal.html.twig'%}
+        <div class="card my-2">
+            <div class="card-header">
+                <i class="bi bi-table fs-5 me-1"></i>
+                Listes des slides
+            </div>
+            <div class="card-body">
+                <Table class="table table-hover table-bordered" id="datatablesSimple">
+                <a href="{{path('admin_slide_add')}}" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus-lg"></i> Nouveau slide</a>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Titre</th>
+                            <th>Image</th>
+                            <th>Déscription</th>
+                            <th class='text-center'>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for slide in slides %}
+                                <tr>
+                                    <td>{{slide.id}}</td>
+                                    <td>{{slide.Titre}}</td> 
+                                    <td> <img src="{{asset("assets/images/"~slide.image)}}" alt="{{slide.Titre}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
+                                    <td>{{slide.description}}</td>
+                                    <td class='text-center'>
+                                        <a href="{{path('admin_slide_edit',{'id':slide.id})}}" class="btn-sm m-2">
+                                        <i class="bi bi-pencil-square fs-5 text-warning"></i></a>
+                                        <a href="{{path('admin_slide_delete',{'id':slide.id})}}" class="btn-sm m-2">
+                                        <i class="bi bi-trash-fill fs-5 text-danger"></i></a>
+                                    </td>      
+                                </tr>
+                            {% endfor %}
+                    </tbody>
+                </Table>
+            </div>  
+        </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+	{% if error %}
+        <div class="alert alert-danger text-center mt-1">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>		
+	{% endif %}
+    <div class="container offset-md-4 col-md-4 col-sm-12 p-3">
+        <h3 class="text-primary">Connectez vous!</h3>
+        <form action="{{ path('security_login') }}" method="post">
+			<div class="form-group form-floating my-2">				
+				<input class="form-control" type="email" placeholder="Adresse email:" id="username" name="_username" value="{{ last_username }}" required>
+				<label class="form-label" for="username">Adresse email:</label>
+			</div>
+			<div class="form-group form-floating my-2">
+				<input class="form-control" type="password" placeholder="Mot de passe:" id="password" name="_password" required>
+				<label class="form-label" for="password">Mot de passe:</label>
+			</div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button type="submit" class="btn btn-primary my-2 w-100">Connexion</button>
+            <div class="d-flex justify-content-between my-2 small text-center">
+				<a href="{{ path('security_registration') }}" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">
+					Vous n'avez pas de compte ?</a>
+				<a href="{{ path('forget_pass') }}" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">
+					Réinitialiser le mot de passe</a>
+			</div>               
+        </form>
+    </div>  
+{% endblock %}

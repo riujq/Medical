@@ -1,0 +1,11 @@
+twig:
+    file_name_pattern: '*.twig'
+    paths:
+        '%kernel.project_dir%/public/assets/css': styles
+    form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        Unread: '@App\Twig\Extension'
+
+when@test:
+    twig:
+        strict_variables: true

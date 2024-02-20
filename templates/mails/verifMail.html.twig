@@ -1,0 +1,8 @@
+
+<h1 style="color:rgba(4, 133, 202, 0.824);">Activation de votre compte!</h1>
+<p style="color:gray;">Bonjour {{user.email}} pour activer votre compte sur Médical International
+    veuillez cliquer sur le lien suivant :<a style="color:rgba(4, 133, 202, 0.824);" href="{{absolute_url(path('verify_user', {token:token})) }}">
+    {{absolute_url(path('verify_user', {token:token})) }}</a>
+</p>
+<p><strong style="color:red;">Ce lien expirera dans 3 heures Merci!!!</strong></p>
+
