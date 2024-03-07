@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Page d'acceuil{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{asset("assets/css/home.css")}}">{% endblock %}
 {% block body %}
 
     <section>
@@ -14,14 +13,16 @@
             <div class="carousel-inner">
                 {% for slide in slides %}
                     <div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
-                        <img src="{{asset ("assets/images/"~slide.Image)}}" alt="{{slide.Titre}}" class="d-block object-fit-cover w-100 h-100">
+                        <img src="{{asset(ImgUrl~slide.Image)}}" alt="{{slide.Titre}}" class="d-block object-fit-cover w-100 h-100" style="filter:brightness(0.6);">
                         <div class="carousel-caption">
-                            <h5 class="text-white"> {{slide.Titre}} </h5>
-                            <p class="text-white"> {{slide.Description}} </p>                
-                                {% if ( slide.Titre == 'Medicaux') %} <a href="{{path('medicaux')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
-                                {% if ( slide.Titre == 'Labotech') %} <a href="{{path('id_produit',{'id': slide.Titre })}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
-                                {% if ( slide.Titre == 'Sav et Technique') %} <a href="{{path('service')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
-                                {% if ( slide.Titre == 'Calibration et Metrologie') %} <a href="{{path('metrocal')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}                      
+                            <div class="container">
+                                <h1 class="text-white"> {{slide.Titre}} </h1>
+                                <p class="text-white"> {{slide.Description}} </p>                
+                                    {% if ( slide.Titre == 'Medicaux') %} <a href="{{path('medicaux')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                    {% if ( slide.Titre == 'Labotech') %} <a href="{{path('id_produit',{'id': slide.Titre })}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                    {% if ( slide.Titre == 'Sav et Technique') %} <a href="{{path('service')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                    {% if ( slide.Titre == 'Calibration et Metrologie') %} <a href="{{path('metrocal')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}   
+                            </div>                   
                         </div>
                     </div>
                 {% endfor %}

@@ -24,7 +24,7 @@ class ActuController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(Actu $actu=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Actu $actu,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $actu = $actu ? $actu : new actu();
         $Form=$this->CreateForm(ActuType::class,$actu);

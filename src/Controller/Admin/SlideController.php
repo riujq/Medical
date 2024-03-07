@@ -24,7 +24,7 @@ class SlideController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(Slide $slide=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Slide $slide,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $slide = $slide ? $slide : new Slide();
         $Form=$this->CreateForm(SlideType::class,$slide);

@@ -1,68 +1,68 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Shop{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{asset("assets/css/produit.css")}}">{% endblock %}
+
 {% block body %}
-            <section class="container py-3">
-                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        {% if c == false %}
-                            <li class="breadcrumb-item active" aria-current="page">Produits</li>
-                        {% else %}
-                            <li class="breadcrumb-item"><a href="{{path('app_produit')}}">Produits</a></li>
-                        {% endif %}
-                        {% if produit and c %}
-                            {% if c == 'cat' %}
-                                <li class="breadcrumb-item active" aria-current="page">{{produit[0].sousCategory.category.nom}}</a></li>
-                            {% else %}
-                                <li class="breadcrumb-item">
-                                    <a href="{{path('id_produit',{'id': produit[0].sousCategory.category.nom})}}">{{produit[0].sousCategory.category.nom}}</a>
-                                </li>
-                            {% endif %}
-                            {% if produit[0].sousCategory.nom and c == 'scat' %} 
-                                <li class="breadcrumb-item active" aria-current="page">{{produit[0].sousCategory.nom}}</li>
-                            {% endif %}
-                        {% endif %}
-                    </ol>
-                </nav>
-                {% if produit and c %}
-                    <div class="row py-2">
-                        <div class="col-md-6">
-                            <h2 class="text-primary">
-                                <span style="font-size: 20px;"> {{produit[0].sousCategory.category.nom}} 
-                                {% if produit[0].sousCategory.nom and c == 'scat' %} : {{produit[0].sousCategory.nom}} {% endif %} </span>
-                            </h2>
-                            <div class="text-secondary" style="text-align: justify;">
-                                {{produit[0].sousCategory.category.description | raw }} 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            {% if produit[0].sousCategory.image and c == 'scat' %}
-                                <img src="{{asset("assets/images/"~produit[0].sousCategory.image)}}" alt="Categorie" class="img img-fluid" >
-                            {% else %}
-                                <img src="{{asset("assets/images/"~produit[0].sousCategory.category.image)}}" alt="Categorie" class="img img-fluid" >
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endif %}               
-                <div class="row py-2">
-                    {% for prod in produit %}
-                        <div class="col-md-3 col-sm-12">
-                            <div class="card p-2 my-2" style="height: 26rem;width: 16rem;">
-                                <img src="{{asset("assets/images/"~prod.Image)}}" alt="{{ prod.nom }}" class="img img-fluid" style="height:240px;width:240px;"/>
-                                <div class="produit_btn">
-                                    <a role="button" href="#" class="btn btn-outline-primary">
-                                        <i class="bi bi-cart-fill fs-5"></i>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">{{ prod.nom }}</h6>
-                                    <p class="card-text"><small class="text-body-secondary">{{ prod.souscategory.category.nom }} <br> ({{ prod.souscategory.nom }})</small></p>
-                                    <a href="{{path('single_produit',{'id':prod.id})}}">Détails</a>
-                                </div>
-                             </div>
-                        </div>
-                    {% endfor %}
+<section class="container py-3">
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if c == false %}
+                <li class="breadcrumb-item active" aria-current="page">Produits</li>
+            {% else %}
+                <li class="breadcrumb-item"><a href="{{path('app_produit')}}">Produits</a></li>
+            {% endif %}
+            {% if produit and c %}
+                {% if c == 'cat' %}
+                    <li class="breadcrumb-item active" aria-current="page">{{produit[0].sousCategory.category.nom}}</a></li>
+                {% else %}
+                    <li class="breadcrumb-item">
+                        <a href="{{path('id_produit',{'id': produit[0].sousCategory.category.nom})}}">{{produit[0].sousCategory.category.nom}}</a>
+                    </li>
+                {% endif %}
+                {% if produit[0].sousCategory.nom and c == 'scat' %} 
+                    <li class="breadcrumb-item active" aria-current="page">{{produit[0].sousCategory.nom}}</li>
+                {% endif %}
+            {% endif %}
+        </ol>
+    </nav>
+    {% if produit and c %}
+        <div class="row py-3">
+            <div class="col-md-6">
+                <h2 class="text-primary">
+                    <span style="font-size: 20px;"> {{produit[0].sousCategory.category.nom}} 
+                    {% if produit[0].sousCategory.nom and c == 'scat' %} : {{produit[0].sousCategory.nom}} {% endif %} </span>
+                </h2>
+                <div class="text-secondary" style="text-align: justify;">
+                    {{produit[0].sousCategory.category.description | raw }} 
                 </div>
-            </section>
+            </div>
+            <div class="col-md-6">
+                {% if produit[0].sousCategory.image and c == 'scat' %}
+                    <img src="{{asset(ImgUrl~produit[0].sousCategory.image)}}" alt="Categorie" class="img img-fluid" >
+                {% else %}
+                    <img src="{{asset(ImgUrl~produit[0].sousCategory.category.image)}}" alt="Categorie" class="img img-fluid" >
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}               
+    <div class="row g-3 row-cols-auto d-flex justify-content-center">
+        {% for prod in produit %}
+            <div class="col">
+                <div class="card" style="height: 26rem;width: 15rem;">
+                    <img src="{{asset(ImgUrl~prod.Image)}}" alt="{{ prod.nom }}" class="img img-fluid" style="height:240px;width:240px;"/>
+                    <div class="produit_btn">
+                        <a role="button" href="#" class="btn btn-outline-dark">
+                            <i class="bi bi-cart-fill fs-5"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">{{ prod.nom }}</h6>
+                        <p class="card-text"><small class="text-body-secondary">{{ prod.souscategory.category.nom }} <br> ({{ prod.souscategory.nom }})</small></p>
+                        <a href="{{path('single_produit',{'id':prod.id})}}">Détails</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

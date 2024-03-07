@@ -23,7 +23,7 @@ class ArticleController extends AbstractController
     }
     #[Route('/new', name: 'create')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(Article $article=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Article $article,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $article = $article ? $article : new article();
         $Form=$this->CreateForm(ArticleType::class,$article);

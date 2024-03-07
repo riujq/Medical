@@ -24,7 +24,7 @@ class SousCategoryController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(SousCategory $category=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?SousCategory $category,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $category = $category ? $category : new sousCategory();
         $Form=$this->CreateForm(SousCategoryType::class,$category);

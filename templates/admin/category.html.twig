@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>{{categorie.id}}</td>
                                     <td>{{categorie.nom}}</td> 
-                                    <td> <img src="{{asset ("assets/images/"~categorie.image)}}" alt="{{categorie.nom}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
+                                    <td> <img src="{{asset (ImgUrl~categorie.image)}}" alt="{{categorie.nom}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
                                     <td>{{categorie.description}}</td>
                                     <td class='text-center'>
                                         <a href="{{path('admin_category_edit',{'id':categorie.id})}}" class="btn-sm m-2">

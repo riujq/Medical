@@ -25,7 +25,7 @@ class ProduitController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(Produit $produit=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Produit $produit,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $produit = $produit ? $produit : new produit();
         $Form=$this->CreateForm(ProduitType::class,$produit);

@@ -1,11 +1,10 @@
 twig:
     file_name_pattern: '*.twig'
-    paths:
-        '%kernel.project_dir%/public/assets/css': styles
+    default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         Unread: '@App\Twig\Extension'
-
+        ImgUrl: 'Images/'
 when@test:
     twig:
         strict_variables: true

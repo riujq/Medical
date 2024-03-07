@@ -22,7 +22,7 @@
                                 <tr>
                                     <td>{{article.id}}</td>
                                     <td>{{article.titre}}</td>
-                                    <td> <img src="{{asset ("assets/images/"~article.image)}}"alt="{{article.titre}}" width="120" height="180" itemprop="image" class="img img-fluid"></td>
+                                    <td> <img src="{{asset (ImgUrl~article.image)}}"alt="{{article.titre}}" width="120" height="180" itemprop="image" class="img img-fluid"></td>
                                     <td>{{article.content}}</td>
                                     <td>
                                         <a href="{{path('admin_article_edit',{'id':article.id})}}" class="btn-sm edit m-2">

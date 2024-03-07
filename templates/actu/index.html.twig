@@ -5,7 +5,7 @@
 {% block body %}
     <div class="p-3">
         <div class="btn-group col-sm-12 btn-group pb-1" role="group" aria-label="button group">
-            <a href="{{path('id_actu',{'id': 'Réalisations' })}}" class="btn btn-primary{% if a == "Réalisations" %} active {% endif %}">Réalisations</a>
+            <a href="{{path('id_actu',{'id': 'Réalisations' })}}" class="btn btn-primary {% if a == "Réalisations" %} active {% endif %}">Réalisations</a>
             <a href="{{path('id_actu',{'id': 'Evénement' })}}" class="btn mx-1 btn-primary {% if a == "Evénement" %} active {% endif %}">Evénements</a>
             <a href="{{path('id_actu',{'id': 'Promotion' })}}" class="btn btn-primary {% if a == "Promotion" %} active {% endif %}">Promotion</a>
         </div>
@@ -15,8 +15,8 @@
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <a href="{{asset("assets/images/"~actu.image)}}">
-                                <img src="{{asset("assets/images/"~actu.image)}}" class="img-fluid rounded-start" alt="{{actu.nom}}"></a>
+                                <a href="{{ asset(ImgUrl~actu.image) }} ">
+                                <img src="{{ asset(ImgUrl~actu.image) }}" class="img-fluid rounded-start" alt="{{actu.nom}}"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

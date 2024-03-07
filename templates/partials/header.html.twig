@@ -10,12 +10,12 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <div class="d-flex align-items-left">
-                        <a href="{{path('home')}}"><img src="{{asset("assets/images/Medical-international-4.png")}}" alt="logo-mi" class="img-fluid" style="width: 240px;"></a>
+                        <a href="{{path('home')}}"><img src="{{ asset("Images/Medical-international-4.png") }}" alt="logo-mi" class="img-fluid" style="width: 200px;"></a>
                     </div>
                     <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse" id="navbarColor02" style="">
+                    <div class="navbar-collapse collapse" id="navbarColor02">
                         <ul class="navbar-nav nav-underline me-auto">                          
                             {% include 'partials/dropDown.html.twig' %}
                             <li class="nav-item">
@@ -32,9 +32,9 @@
                             <a class="nav-link rechercher" href="#"><i class="bi bi-search fs-5"></i></a>
                         </div>
                         <div class="d-flex align-items-right">
-                            <a href="{{path('id_produit',{'id': 'Labotech' })}}"><img src="{{asset("assets/images/labotech logo.jpg")}}" alt="logo-lab" class="img-fluid" style="width: 200px;"></a>
+                            <a href="{{path('id_produit',{'id': 'Labotech' })}}"><img src="{{asset("Images/labotech logo.jpg")}}" alt="logo-lab" class="img-fluid" style="width: 200px;"></a>
                         </div>
-                        <div class="dropdown mx-3">
+                        <div class="dropdown ms-3">
                             <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-fill fs-5"></i>
                             </a>
@@ -60,5 +60,3 @@
                 </div>
             </nav>          
         </Header>
-
-        {% block javascripts %} <script src="{{asset("assets/JavaScript/searchBar.js")}}"></script> {% endblock %}

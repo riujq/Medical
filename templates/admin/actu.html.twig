@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{actu.id}}</td>
                                     <td>{{actu.nom}}</td>
-                                    <td> <img src="{{asset ("assets/images/"~actu.image)}}" alt="{{actu.nom}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
+                                    <td> <img src="{{asset (ImgUrl~actu.image)}}" alt="{{actu.nom}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
                                     <td>{{actu.description}}</td>
                                     <td>{{actu.date | date('d/m/Y \\à H:i')}}</td>
                                     <td>{{actu.Type.Nom}}</td>

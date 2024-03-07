@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>{{slide.id}}</td>
                                     <td>{{slide.Titre}}</td> 
-                                    <td> <img src="{{asset("assets/images/"~slide.image)}}" alt="{{slide.Titre}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
+                                    <td> <img src="{{asset(ImgUrl~slide.image)}}" alt="{{slide.Titre}}" style="max-height:120px;max-width:60px;" class="img img-fluid"></td>
                                     <td>{{slide.description}}</td>
                                     <td class='text-center'>
                                         <a href="{{path('admin_slide_edit',{'id':slide.id})}}" class="btn-sm m-2">

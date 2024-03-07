@@ -28,7 +28,7 @@ class FileService extends AbstractController
         }
         return  $newFilename;
     }
-    public function delete_file(String $file)
+    public function delete_file(?String $file)
     {
         if($file)
         {

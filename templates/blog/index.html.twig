@@ -12,8 +12,8 @@
         {% for article in articles %}
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card mb-3 shadow-sm" style="height:99%;">
-                    <a href="{{asset("assets/images/"~article.image)}}">
-                    <img src="{{asset("assets/images/"~article.image)}}" alt="{{article.titre}}" style="height:100%;" class="img img-fluid"></a>
+                    <a href="{{asset(ImgUrl~article.image)}}">
+                    <img src="{{asset(ImgUrl~article.image)}}" alt="{{article.titre}}" style="height:100%;" class="img img-fluid"></a>
                     <div class="card-body">
                         <div class="card-title">
                             <h4>{{article.titre}}</h4>

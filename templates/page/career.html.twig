@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Carrière{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{asset("assets/css/career.css")}}">{% endblock %}
+
 {% block body %}
 <div class="py-3">
     <div class="container">
@@ -45,7 +45,7 @@
                             <h5 class="card-title"><i class="bi bi-x-diamond-fill"> {{career.nom}} </i></h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">Publié le {{career.date | date('d/m/Y')}}</h6>
                             <p class="card-text">En CDI </p>
-                            <a href="{{asset("assets/images/"~career.image)}}" class="btn btn-primary">Détails</a>
+                            <a href="{{asset(ImgUrl~career.image)}}" class="btn btn-primary">Détails</a>
                             <a href="{{path('post')}}" class="btn btn-primary">Postulez</a>
                         </div>
                     </div>

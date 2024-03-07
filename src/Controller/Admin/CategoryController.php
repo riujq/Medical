@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(Category $category=null,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Category $category,Request $request, ManagerRegistry $manager,FileService $fileService): Response
     {  
         $category = $category ? $category : new Category();
         $Form=$this->CreateForm(CategoryType::class,$category);
