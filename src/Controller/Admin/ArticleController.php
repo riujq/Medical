@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use App\Service\FileService;
 use App\Repository\ArticleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +22,7 @@ class ArticleController extends AbstractController
     }
     #[Route('/new', name: 'create')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(?Article $article,Request $request, ManagerRegistry $manager,FileService $fileService): Response
+    public function Form(?Article $article,Request $request, ManagerRegistry $manager): Response
     {  
         $article = $article ? $article : new article();
         $Form=$this->CreateForm(ArticleType::class,$article);
@@ -32,13 +31,6 @@ class ArticleController extends AbstractController
         {          
             $em=$manager->getManager();
             if(!$article->getCreatedAt()){$article->setCreatedAt(new \DateTime());}
-            $image = $article->getImage();
-            $newImage= $Form->get('image')->getData();
-            if ($newImage) 
-            {
-                $fileService->delete_file($image);
-                $article->setImage($fileService->add_file($newImage));
-            }
             $em->persist($article);
             $em->Flush();
             return $this->redirectToRoute('admin_article_index');
@@ -46,11 +38,9 @@ class ArticleController extends AbstractController
         return $this->render('admin/index.html.twig',  ['form' => $Form->createView()]);
     }  
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Article $article,ManagerRegistry $manager,FileService $fileService): Response
-    {   
-        $images=$article->getImage();           
+    public function delete(Article $article,ManagerRegistry $manager): Response
+    {            
         $em=$manager->getManager();
-        $fileService->delete_file($images);
         $em->remove($article);
         $em->Flush();        
         $this->addFlash('info',"L'article a été supprimé avec succès");

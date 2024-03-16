@@ -3,7 +3,7 @@ import { Modal } from 'bootstrap';
 const popModal = () =>{
     const popModal = document.getElementById("popModal");
     if(popModal) {
-        const mypopModal = new Modal(popModal);
+        const mypopModal = Modal.getOrCreateInstance(popModal);
         if(sessionStorage.getItem(mypopModal)!='true'){
             mypopModal.show();
         }

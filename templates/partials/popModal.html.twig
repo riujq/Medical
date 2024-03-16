@@ -10,8 +10,8 @@
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <a href="{{asset("assets/images/"~Unread.promo.image)}}">
-                                <img src="{{asset ("assets/images/"~Unread.promo.image)}}" class="img-fluid rounded-start" alt="{{Unread.promo.nom}}"></a>
+                                <a href="{{vich_uploader_asset(Unread.promo,'imageFile')}}">
+                                <img src="{{vich_uploader_asset(Unread.promo,'imageFile')}}" class="img-fluid rounded-start" alt="{{Unread.promo.nom}}"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

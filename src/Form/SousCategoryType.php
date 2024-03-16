@@ -7,7 +7,6 @@ use App\Entity\SousCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,23 +18,7 @@ class SousCategoryType extends AbstractType
     {
         $builder
             ->add('nom',TextType::class,['label' => 'nom','attr'=> ['placeholder'=>"nom de la sous-catégorie",'class'=>"my-2"],'row_attr' => ['class' => 'form-floating',]])
-            ->add('Image', FileType::class, [
-                'label' => 'Image',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '5024k',
-                        'mimeTypes' => [
-                            'image/png',
-                            'image/gif',
-                            'image/jpg',
-                            'image/jpeg',
-                        ],
-                        'mimeTypesMessage' => 'veuillez choisir un format image valide',
-                    ])
-                ],
-            ])
+            ->add('imageFile', FileType::class, ['label' => 'Image', 'required' => false])
             ->add('category',EntityType::class,[
                 'class'=>Category::class,
                 'label' => 'Categorie',

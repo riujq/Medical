@@ -14,16 +14,8 @@ const admin = () => {
                 noResults: "Aucun résultat ne correspond à votre requête de recherche",
             }
         });
-        let adminModal = new Modal(document.querySelector("#myModal"));       
-        let add=document.querySelector('.btn-success');
-        if(add)
-        {
-            add.addEventListener('click',e =>{
-                e.preventDefault();
-                loadUrl(add.getAttribute('href'));
-            })
-        }
-        datatablesSimple.querySelectorAll('a').forEach(a => {
+        let adminModal = Modal.getOrCreateInstance(document.querySelector("#myModal"));       
+        datatablesSimple.querySelectorAll('.btn-del').forEach(a => {
             a.addEventListener('click',e =>{
                 e.preventDefault();
                 loadUrl(a.getAttribute('href'));
@@ -41,15 +33,7 @@ const admin = () => {
                 const data = await r.json();
                 document.querySelector(".modal-title").innerText=data.title;
                 document.querySelector(".modal-body").innerHTML= data.content;
-                document.querySelector(".modal-footer").innerHTML= data.foot;
-                if(document.querySelector(".modal-footer a"))
-                {
-                    document.querySelector(".modal-footer a").href=url;
-                }
-                else
-                {
-                    history.replaceState({},'',url);
-                }
+                document.querySelector(".modal-footer a").href=url;
                 adminModal.show(); 
             }
             else

@@ -38,9 +38,9 @@
             </div>
             <div class="col-md-6">
                 {% if produit[0].sousCategory.image and c == 'scat' %}
-                    <img src="{{asset(ImgUrl~produit[0].sousCategory.image)}}" alt="Categorie" class="img img-fluid" >
+                    <img src="{{vich_uploader_asset(ImgUrl~produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
                 {% else %}
-                    <img src="{{asset(ImgUrl~produit[0].sousCategory.category.image)}}" alt="Categorie" class="img img-fluid" >
+                    <img src="{{vich_uploader_asset(ImgUrl~produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
                 {% endif %}
             </div>
         </div>
@@ -49,7 +49,7 @@
         {% for prod in produit %}
             <div class="col">
                 <div class="card" style="height: 26rem;width: 15rem;">
-                    <img src="{{asset(ImgUrl~prod.Image)}}" alt="{{ prod.nom }}" class="img img-fluid" style="height:240px;width:240px;"/>
+                    <img src="{{vich_uploader_asset(prod,'imageFile')}}" alt="{{ prod.nom }}" class="img img-fluid" style="height:240px;width:240px;"/>
                     <div class="produit_btn">
                         <a role="button" href="#" class="btn btn-outline-dark">
                             <i class="bi bi-cart-fill fs-5"></i>

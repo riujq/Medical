@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{asset(ImgUrl~cats[i].image)}}" alt="{{cats[i].nom}}" class="img img-fluid" >
+                        <img src="{{vich_uploader_asset(cats[i],'imageFile')}}" alt="{{cats[i].nom}}" class="img img-fluid" >
                     </div>
                 </div>
             {% endif %}

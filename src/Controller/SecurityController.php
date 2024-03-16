@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ProfilType;
 use App\Form\ReqPassType;
 use App\Form\ResetPassType;
 use App\Service\JWTService;
@@ -52,8 +51,8 @@ class SecurityController extends BaseController
             $em=$manager->getManager();
             $em->persist($user);
             $em->flush();
-            $this->addFlash('success',"Inscription terminer!!! Bienvenue");
-            return $this->redirectToRoute('home');
+            $this->addFlash('success',"Inscription terminer!!!");
+            return $this->redirectToRoute('security_login');
          }
         return $this->render('security/Registration.html.twig', [
              'form' => $Form->createView() ]);
@@ -80,16 +79,16 @@ class SecurityController extends BaseController
                 $em->flush();
                 $url=$this->generateUrl('reset_pass',['Token'=>$Token],UrlGeneratorInterface::ABSOLUTE_URL);
                 $context=compact('url','user');
-                $mailer->sendMail('contact@medical-inter.com',
+                $mailer->sendMail('messagerie@mi-labotech.com',
                               $user->getEmail(),
                               'Réinitialisation de mot de passe!',
                               'mails/resetPass.html.twig',
                               $context
                 );
-                $this->addFlash('info',"requete envoyer avec succès,verifier vos emails");
+                $this->addFlash('info',"Requete envoyer avec succès,verifier vos emails");
                 return $this->redirectToRoute('security_login');
             }
-            $this->addFlash('notice',"Aucun email correspondant trouver");
+            $this->addFlash('danger',"Aucun email correspondant trouver");
             return $this->redirectToRoute('security_login');
         }
         return $this->render('security/ResetPass.html.twig', [
@@ -116,7 +115,7 @@ class SecurityController extends BaseController
             return $this->render('security/ResetPass.html.twig', [
                 'form' => $Form->createView() ]);
         }
-        $this->addFlash('notice',"Jeton invalide");
+        $this->addFlash('danger',"Jeton invalide");
         return $this->redirectToRoute('security_login');
     }
     #[Route('/verif/{token}', name: 'verify_user')]
@@ -162,13 +161,13 @@ class SecurityController extends BaseController
         ];
         $token=$jwt->generate($header,$payload,$this->getParameter('app.jwtsecret'));
         $context=compact('user','token');
-        $mailer->sendMail('contact@medical-inter.com',
+        $mailer->sendMail('messagerie@mi-labotech.com',
         $user->getEmail(),
         'Activation du compte',
         'mails/verifMail.html.twig',
         $context
         );
-        $this->addFlash('info',"email de vérification envoyer, vérifier vos emails");
+        $this->addFlash('info',"Email de vérification envoyer, vérifier vos emails");
         return $this->redirectToRoute('home');
     }
 }

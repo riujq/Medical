@@ -26,8 +26,7 @@ class UserController extends AbstractController
         if($request->isXmlHttpRequest()){
             return new JsonResponse([
                 'content'=> "Êtes-vous sûr(e) de vouloir supprimer cette utilisateur",
-                'title'=> 'Suppression',
-                'foot'=>$this->renderView('admin/confirm.html.twig',['Action'=>'Supprimer','color'=>'danger'])
+                'title'=> 'Suppression'
             ]);
         }
         $em=$manager->getManager();
@@ -50,13 +49,6 @@ class UserController extends AbstractController
             $this->addFlash('info',"Modification terminer");
             return $this->redirectToRoute('admin_users_index');
         }
-        if($request->get('ajax')){
-            return new JsonResponse([
-                'content'=> $this->renderView('admin/form.html.twig',['form' => $form->createView()]),
-                'foot'=>'',
-                'title'=> "Modifier le rôle de l'utilisateur"
-            ]);
-        }
-        return $this->redirectToRoute('admin_users_index');
+        return $this->render('admin/form.html.twig',['form' => $form->createView(),"title" => "Modifier le rôle de l'utilisateur"]);
     }
 }

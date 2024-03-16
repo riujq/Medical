@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProduitRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
 class Produit
 {
     #[ORM\Id]
@@ -23,6 +27,10 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image')]
+    #[Assert\Image(maxSize: '5024k',mimeTypes : ['image/png','image/gif','image/jpg','image/jpeg'])]
+    private ?File $imageFile = null;
+
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
     private ?SousCategory $sousCategory = null;
@@ -32,6 +40,9 @@ class Produit
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $prix = null;
+
+    #[ORM\Column(nullable: true)]
+    public ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -72,6 +83,20 @@ class Produit
         $this->image = $image;
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): static
+    {
+        $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getSousCategory(): ?SousCategory

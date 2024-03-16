@@ -63,7 +63,7 @@ class PageController extends AbstractController
             $Message=$Form->get('Message')->getData();
             $Email=$Form->get('Email')->getData();
             $context=compact('Nom','PhoneNumber','Message','Email');
-            $mailer->sendMail($Form->get('Email')->getData(),
+            $mailer->sendMail('messagerie@mi-labotech.com',
                           'contact@medical-inter.com',
                           'Messages',
                           'mails/message.html.twig',
@@ -87,7 +87,7 @@ class PageController extends AbstractController
             $CV=$Form->get('CV')->getData();
             $Email=$Form->get('Email')->getData();
             $context=compact('Nom','PhoneNumber','CV');
-            $mailer->sendMail($Form->get('Email')->getData(),
+            $mailer->sendMail('messagerie@mi-labotech.com',
                           'contact@medical-inter.com',
                           $Objet,
                           'mails/Cv.html.twig',

@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 {% for slide in slides %}
                     <div class="carousel-item {% if loop.index0 == 0 %} active {% endif %}">
-                        <img src="{{asset(ImgUrl~slide.Image)}}" alt="{{slide.Titre}}" class="d-block object-fit-cover w-100 h-100" style="filter:brightness(0.6);">
+                        <img src="{{vich_uploader_asset(slide,'imageFile')}}" alt="{{slide.Titre}}" class="d-block object-fit-cover w-100 h-100" style="filter:brightness(0.6);">
                         <div class="carousel-caption">
                             <div class="container">
                                 <h1 class="text-white"> {{slide.Titre}} </h1>

@@ -12,7 +12,9 @@
         {% include 'partials/popModal.html.twig' %}               
         <div>
             {% include 'partials/bandef.html.twig' %}
-            {% include 'partials/flashMessages.html.twig' %}
+            <div class="container">
+                {% include 'partials/flashMessages.html.twig' %}
+            </div>
             <div>
                 {% block body %}
                 {% endblock %}

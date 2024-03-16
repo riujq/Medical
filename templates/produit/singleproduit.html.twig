@@ -13,7 +13,7 @@
         </nav>
 		<div class="row">
 			<div class="col-md-6">
-				<img src="{{asset (ImgUrl~produit.Image)}}" alt="{{produit.nom}}" class="img img-fluid" style="maxHeight:250px;maxWidth:200px"><br>
+				<img src="{{vich_uploader_asset(produit,'imageFile')}}" alt="{{produit.nom}}" class="img img-fluid" style="maxHeight:250px;maxWidth:200px"><br>
 				<h4 class="text-primary">Description</h4>
 				<p>{{produit.description}}</p>
 			</div>

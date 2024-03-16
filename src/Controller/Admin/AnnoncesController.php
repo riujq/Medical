@@ -25,6 +25,7 @@ class AnnoncesController extends AbstractController
     #[Route('/edit/{id}', name: 'edit')]
     public function Form(Annonces $annonces=null,Request $request, ManagerRegistry $manager): Response
     {  
+        $title= $annonces ? "Modifier l'annonce" : "Ajouter une annonce";
         $annonces = $annonces ? $annonces : new Annonces();
         $Form=$this->CreateForm(AnnoncesType::class,$annonces);
         $Form->handleRequest($request);
@@ -35,14 +36,7 @@ class AnnoncesController extends AbstractController
             $em->Flush();
             return $this->redirectToRoute('admin_annonces_index');
         }
-        if($request->get('ajax')){
-            return new JsonResponse([
-                'content'=> $this->renderView('admin/form.html.twig',['form' => $Form->createView()]),
-                'foot'=>'',
-                'title'=> $annonces->getTitre() ? "Modifier l'annonce" : "Ajouter une annonce"
-            ]);
-        }
-        return $this->redirectToRoute('admin_annonces_index');
+        return $this->render('admin/form.html.twig',['form' => $Form->createView(),"title" => $title]);
     }  
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Annonces $annonces,ManagerRegistry $manager,Request $request): Response
@@ -50,8 +44,7 @@ class AnnoncesController extends AbstractController
         if($request->isXmlHttpRequest()){
             return new JsonResponse([
                 'content'=> "Êtes-vous sûr(e) de vouloir supprimer cette annonce",
-                'title'=> 'Suppression',
-                'foot'=>$this->renderView('admin/confirm.html.twig',['Action'=>'Supprimer','color'=>'danger'])
+                'title'=> 'Suppression'
             ]);
         }          
         $em=$manager->getManager();

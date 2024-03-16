@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
-use App\Service\FileService;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,46 +24,30 @@ class ProduitController extends AbstractController
     }
     #[Route('/add', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function Form(?Produit $produit,Request $request, ManagerRegistry $manager,FileService $fileService): Response
-    {  
+    public function Form(Produit $produit=null,Request $request, ManagerRegistry $manager): Response
+    {         
+        $title= $produit ? "Modifier Produit" : "Nouveau Produit";
         $produit = $produit ? $produit : new produit();
         $Form=$this->CreateForm(ProduitType::class,$produit);
         $Form->handleRequest($request);
         if($Form->isSubmitted() && $Form->isValid())
         {          
             $em=$manager->getManager();
-            $image = $produit->getImage();
-            $newImage= $Form->get('Image')->getData();
-            if ($newImage) 
-            {
-                $fileService->delete_file($image);
-                $produit->setImage($fileService->add_file($newImage));
-            }
             $em->persist($produit);
             $em->Flush();
             return $this->redirectToRoute('admin_product_index');
         }
-        if($request->get('ajax')){
-            return new JsonResponse([
-                'content'=> $this->renderView('admin/form.html.twig',['form' => $Form->createView()]),
-                'foot'=>'',
-                'title'=> $produit->getNom() ? "Modifier Produit" : "Nouveau Produit"
-            ]);
-        }
-        return $this->redirectToRoute('admin_product_index');
+        return $this->render('admin/form.html.twig',['form' => $Form->createView(),"title" => $title]);
     }  
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Produit $produit,ManagerRegistry $manager,FileService $fileService,Request $request): Response
+    public function delete(Produit $produit,ManagerRegistry $manager,Request $request): Response
     {   
         if($request->isXmlHttpRequest()){
             return new JsonResponse([
                 'content'=> "Êtes-vous sûr(e) de vouloir supprimer le produit",
-                'title'=> 'Suppression',
-                'foot'=>$this->renderView('admin/confirm.html.twig',['Action'=>'Supprimer','color'=>'danger'])
+                'title'=> 'Suppression'
             ]);
         }
-        $images=$produit->getImage();
-        $fileService->delete_file($images);
         $em=$manager->getManager();
         $em->remove($produit);
         $em->Flush();        

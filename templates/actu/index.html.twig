@@ -15,8 +15,8 @@
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <a href="{{ asset(ImgUrl~actu.image) }} ">
-                                <img src="{{ asset(ImgUrl~actu.image) }}" class="img-fluid rounded-start" alt="{{actu.nom}}"></a>
+                                <a href="{{vich_uploader_asset(actu,'imageFile')}}">
+                                <img src="{{vich_uploader_asset(actu,'imageFile')}}" class="img-fluid rounded-start" alt="{{actu.nom}}"></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

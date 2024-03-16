@@ -1,3 +1,9 @@
-        <div class="container">   
+{% extends 'admin.html.twig' %}
+
+{% block title %}Listes des Produits{% endblock %}
+{% block body %}
+        <div class="container mt-3">
+                <h1 class="text-primary"> {{title}} </h1>
                 {{ form(form) }}
         </div>
+{% endblock %}

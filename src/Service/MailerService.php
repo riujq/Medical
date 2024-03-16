@@ -2,16 +2,16 @@
 
 namespace App\Service;
 
-use App\Service\FileService;
 use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MailerService extends AbstractController
 {
-    public function __construct(private MailerInterface $mailer,private FileService $FileService){}
+    public function __construct(private MailerInterface $mailer,private SluggerInterface $slugger){}
 
     public function sendMail($from,$to,$titre,$html,$context,$cv=null)
     {
@@ -22,10 +22,11 @@ class MailerService extends AbstractController
         ->htmlTemplate($html)
         ->context($context); 
         if($cv){
-            $file=$this->FileService->add_file($cv);
-            $email->addPart(new DataPart(new File($this->getParameter("files_directory").'/'.$file), 'CV'));
+            $newFilename = $this->slugger->slug(pathinfo($cv->getClientOriginalName(), PATHINFO_FILENAME)).'-'.uniqid().'.'.$cv->guessExtension();
+            $cv->move($this->getParameter("files_directory"),$newFilename);
+            $email->addPart(new DataPart(new File($this->getParameter("files_directory").'/'.$newFilename), 'CV'));
             $this->mailer->send($email);
-            $this->FileService->delete_file($file);
+            unlink($this->getParameter("files_directory").'/'.$newFilename);
         }else{
             $this->mailer->send($email);
         }

@@ -19,23 +19,7 @@ class SlideType extends AbstractType
         $builder
             ->add('Titre',TextType::class,['label' => 'Nom','attr'=> ['placeholder'=>"Nom du slide",'class'=>"my-2"],'row_attr' => ['class' => 'form-floating',]])
             ->add('Description',TextareaType::class,['label' => 'Déscription','attr'=> ['placeholder'=>"Déscription du slide",'class'=>"my-2", 'style'=>"height: 150px"],'row_attr' => ['class' => 'form-floating',]])
-            ->add('Image', FileType::class, [
-                'label' => 'Image',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '5024k',
-                        'mimeTypes' => [
-                            'image/png',
-                            'image/gif',
-                            'image/jpg',
-                            'image/jpeg',
-                        ],
-                        'mimeTypesMessage' => 'veuillez choisir un format image valide',
-                    ])
-                ],
-            ])
+            ->add('imageFile', FileType::class, ['label' => 'Image', 'required' => false])
             ->add('Enregistrer',SubmitType::class,['attr'=> ['class'=>'btn btn-primary my-2'],])
         ;
     }
