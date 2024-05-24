@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Form\CvType;
 use App\Form\ContactType;
-use App\Form\CategoryType;
-use App\Service\FileService;
 use App\Service\MailerService;
 use App\Repository\ActuRepository;
 use App\Repository\SlideRepository;
@@ -75,7 +73,7 @@ class PageController extends AbstractController
         return $this->render('page/contact.html.twig',['form'=>$Form->createView()]);
     }
     #[Route('/page/post', name: 'post')]
-    public function post(Request $request,MailerService $mailer,FileService $file): Response
+    public function post(Request $request,MailerService $mailer): Response
     {
         $Form= $this->createForm(CvType::class);
         $Form->handleRequest($request);
@@ -88,7 +86,7 @@ class PageController extends AbstractController
             $Email=$Form->get('Email')->getData();
             $context=compact('Nom','PhoneNumber','CV');
             $mailer->sendMail('messagerie@mi-labotech.com',
-                          'contact@medical-inter.com',
+                          'rolande@medical-inter.com',
                           $Objet,
                           'mails/Cv.html.twig',
                           $context,

@@ -15,10 +15,6 @@ class Extension extends BaseController
     {      
         return $this->em->getRepository(Actu::class)->findOneByType('Promotion');
     }
-    public function date()
-    {      
-        return new \DateTime();
-    }
     public function annonces()
     {      
         return $this->em->getRepository(Annonces::class)->findByannonce();

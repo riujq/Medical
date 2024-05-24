@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
         $produit= $em->find($id);
         return $this->render('produit/singleproduit.html.twig',compact('produit'));
     }
-    #[Route('/produit/{id}', name: 'id_produit')]
+    #[Route('/produit/category/{id}', name: 'cat_produit')]
     public function prodcat($id,ProduitRepository $produitRepo): Response
     {
         $produit= $produitRepo->findByCat($id);

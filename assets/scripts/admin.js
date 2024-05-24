@@ -1,5 +1,5 @@
 import { DataTable } from "simple-datatables"
-import { Modal } from 'bootstrap';
+import Modal from './modal.js'
 
 const admin = () => {
     const datatablesSimple = document.getElementById('datatablesSimple');

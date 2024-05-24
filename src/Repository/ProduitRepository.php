@@ -23,7 +23,7 @@ class ProduitRepository extends ServiceEntityRepository
 
     public function findByScat($cat,$scat)
     {
-        $query = $this->createQueryBuilder('p');
+/*         $query = $this->createQueryBuilder('p');
         $query->leftJoin('p.sousCategory','sc')
             ->leftJoin('sc.category','c')
             ->andWhere('sc.nom = :nom')
@@ -31,7 +31,11 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter(':val', $cat)
             ->setParameter(':nom', $scat)
             ->orderBy('p.nom', 'ASC');
-            return $query->getQuery()->getResult();   
+            return $query->getQuery()->getResult();   */ 
+            return $this->getEntityManager()
+            ->createQuery('SELECT p From App\entity\Produit p JOIN p.sousCategory sc JOIN sc.category c WHERE c.nom= :cat 
+            AND sc.nom = :scat ORDER By p.nom ASC')
+            ->setParameters([':cat'=>$cat,':scat'=>$scat])->getResult();
     } 
 
     public function findByCat($nom)
@@ -44,7 +48,7 @@ class ProduitRepository extends ServiceEntityRepository
         ->orderBy('p.nom', 'ASC');
         return $query->getQuery()->getResult();  */
         return $this->getEntityManager()
-        ->createQuery('SELECT p From App\entity\Produit p JOIN p.sousCategory sc JOIN sc.category c WHERE c.nom= :nom')
+        ->createQuery('SELECT p From App\entity\Produit p JOIN p.sousCategory sc JOIN sc.category c WHERE c.nom= :nom ORDER By p.nom ASC')
         ->setParameter(':nom',$nom)->getResult();
     }
 

@@ -28,7 +28,7 @@ class Actu
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image')]
-    #[Assert\Image(maxSize: '5024k',mimeTypes : ['image/png','image/gif','image/jpg','image/jpeg',])]
+    #[Assert\Image(maxSize: '5024k',mimeTypes : ['image/png','image/jpg','image/jpeg',])]
     private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'actus')]

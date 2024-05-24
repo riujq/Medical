@@ -18,24 +18,24 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT,)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image')]
-    #[Assert\Image(maxSize: '5024k',mimeTypes : ['image/png','image/gif','image/jpg','image/jpeg'])]
+    #[Assert\Image(maxSize: '5024k', mimeTypes : ['image/png','image/jpg','image/jpeg'])]
     private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
     private ?SousCategory $sousCategory = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $reference = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]

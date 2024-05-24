@@ -1,62 +1,52 @@
-        <Header class="sticky-top">
-            <div class='container p-2' id="search">
-                <form action="{{path('search_produit')}}" method="post">
-                    <div class="input-group">
-                        <input name="mots" type="text" class="form-control" placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon1">
-                        <button type="submit" class="input-group-text" title="search" id="basic-addon1"><i class="bi bi-search fs-5"></i></button>
-                    </div>
-                </form>
-            </div>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-left">
-                        <a href="{{path('home')}}"><img src="{{ asset("Images/Medical-international-4.png") }}" alt="logo-mi" class="img-fluid" style="width: 200px;"></a>
-                    </div>
-                    <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse" id="navbarColor02">
-                        <ul class="navbar-nav nav-underline me-auto">                          
-                            {% include 'partials/dropDown.html.twig' %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{path('app_actu')}}">Actualités</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{path('career')}}">Carrière</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{path('contact')}}">Nous Contacter</a>
-                            </li>
-                        </ul>
-                        <div class="mx-3">
-                            <a class="nav-link rechercher" href="#"><i class="bi bi-search fs-5"></i></a>
-                        </div>
-                        <div class="d-flex align-items-right">
-                            <a href="{{path('id_produit',{'id': 'Labotech' })}}"><img src="{{asset("Images/labotech logo.jpg")}}" alt="logo-lab" class="img-fluid" style="width: 200px;"></a>
-                        </div>
-                        <div class="dropdown ms-3">
-                            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-fill fs-5"></i>
-                            </a>
-                            {% if not app.user %}
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="{{path('security_login')}}">Se Connecter</a></li>
-                                </ul>
-                            {% else %}
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="{{path('security_logout')}}">Se Déconnecter</a></li>
-                                    {% if is_granted('ROLE_ADMIN') %}                                
-                                        <li><a class="dropdown-item text-bold" href="{{path('admin_product_index')}}">Administration</a></li>                                
-                                    {% endif %}
-                                    {% if app.user.isVerified == false %}                                
-                                        <li><a class="dropdown-item text-bold" href="{{path('resend_verify')}}">Activer mon compte</a></li>                           
-                                    {% endif %}
-                                    <li><hr class="dropdown-divider"/></li>
-                                    <li class="text-center"> {{ app.user.email }} </li>
-                                </ul>
-                            {% endif %}
-                        </div>
-                    </div>
+<Header class="sticky-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center bg-body-tertiary p-2">
+        <a href="{{path('home')}}">
+            <img src="{{ asset("Images/Medical-international-4.png") }}" alt="logo-mi" class="img-fluid" style="width: 200px;">
+        </a>
+        {% include 'partials/nav.html.twig' %}
+        <div class="d-md-flex justify-content-end">
+            <div class="d-flex flex-row justify-content-end">
+                <a class="nav-link rechercher" href="#"><i class="bi bi-search"></i></a>
+                <a class="nav-link theme" href="#"><i class="bi iconTheme ms-3"></i></a>
+                <div class="hamburger ms-3" id="navbarSideCollapse">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
                 </div>
-            </nav>          
-        </Header>
+                <div class="dropdown ms-3">
+                    <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                    {% if not app.user %}
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="{{path('security_login')}}">Se Connecter</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="{{path('security_logout')}}">Se Déconnecter</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}                                
+                                <li><a class="dropdown-item text-bold" href="{{path('admin_product_index')}}">Administration</a></li>                                
+                            {% endif %}
+                            {% if app.user.isVerified == false %}                                
+                                <li><a class="dropdown-item text-bold" href="{{path('resend_verify')}}">Activer mon compte</a></li>                           
+                            {% endif %}
+                            <li><hr class="dropdown-divider"/></li>
+                            <li class="text-center"> {{ app.user.email }} </li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="ms-3">
+                <a href="{{path('cat_produit',{'id': 'Labotech' })}}"><img src="{{asset("Images/labotech logo.jpg")}}" alt="logo-lab-md" class="img-fluid" style="width: 200px;"></a>
+            </div>
+        </div>
+    </div>
+    <div class='container d-none p-2' id="search">
+        <form action="{{path('search_produit')}}" method="post">
+            <div class="input-group">
+                <input name="mots" type="text" class="form-control" placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon1">
+                <button type="submit" class="input-group-text" title="search" id="basic-addon1"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+</Header>

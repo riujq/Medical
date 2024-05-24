@@ -1,4 +1,4 @@
-import { Modal } from 'bootstrap';
+import Modal from './modal.js'
 
 const popModal = () =>{
     const popModal = document.getElementById("popModal");

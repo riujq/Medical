@@ -19,7 +19,7 @@
                                 <h1 class="text-white"> {{slide.Titre}} </h1>
                                 <p class="text-white"> {{slide.Description}} </p>                
                                     {% if ( slide.Titre == 'Medicaux') %} <a href="{{path('medicaux')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
-                                    {% if ( slide.Titre == 'Labotech') %} <a href="{{path('id_produit',{'id': slide.Titre })}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
+                                    {% if ( slide.Titre == 'Labotech') %} <a href="{{path('cat_produit',{'id': slide.Titre })}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
                                     {% if ( slide.Titre == 'Sav et Technique') %} <a href="{{path('service')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}
                                     {% if ( slide.Titre == 'Calibration et Metrologie') %} <a href="{{path('metrocal')}}" class="btn btn-primary my-2">Plus de Détails</a>{% endif %}   
                             </div>                   

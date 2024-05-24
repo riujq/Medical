@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{produit[0].sousCategory.category.nom}}</a></li>
                 {% else %}
                     <li class="breadcrumb-item">
-                        <a href="{{path('id_produit',{'id': produit[0].sousCategory.category.nom})}}">{{produit[0].sousCategory.category.nom}}</a>
+                        <a href="{{path('cat_produit',{'id': produit[0].sousCategory.category.nom})}}">{{produit[0].sousCategory.category.nom}}</a>
                     </li>
                 {% endif %}
                 {% if produit[0].sousCategory.nom and c == 'scat' %} 
@@ -27,7 +27,7 @@
     </nav>
     {% if produit and c %}
         <div class="row py-3">
-            <div class="col-md-6">
+            <div class="col-md-6 py-1">
                 <h2 class="text-primary">
                     <span style="font-size: 20px;"> {{produit[0].sousCategory.category.nom}} 
                     {% if produit[0].sousCategory.nom and c == 'scat' %} : {{produit[0].sousCategory.nom}} {% endif %} </span>
@@ -36,27 +36,22 @@
                     {{produit[0].sousCategory.category.description | raw }} 
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 py-1">
                 {% if produit[0].sousCategory.image and c == 'scat' %}
-                    <img src="{{vich_uploader_asset(ImgUrl~produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
+                    <img src="{{vich_uploader_asset(produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
                 {% else %}
-                    <img src="{{vich_uploader_asset(ImgUrl~produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
+                    <img src="{{vich_uploader_asset(produit[0].sousCategory,'imageFile')}}" alt="Categorie" class="img img-fluid" >
                 {% endif %}
             </div>
         </div>
     {% endif %}               
-    <div class="row g-3 row-cols-auto d-flex justify-content-center">
+    <div class="row g-3 row-cols-auto d-flex justify-content-center justify-content-md-start">
         {% for prod in produit %}
             <div class="col">
                 <div class="card" style="height: 26rem;width: 15rem;">
                     <img src="{{vich_uploader_asset(prod,'imageFile')}}" alt="{{ prod.nom }}" class="img img-fluid" style="height:240px;width:240px;"/>
-                    <div class="produit_btn">
-                        <a role="button" href="#" class="btn btn-outline-dark">
-                            <i class="bi bi-cart-fill fs-5"></i>
-                        </a>
-                    </div>
                     <div class="card-body">
-                        <h6 class="card-title">{{ prod.nom }}</h6>
+                        <h6 class="card-title overflow-hidden" style='height:42px;'>{{ prod.nom }}</h6>
                         <p class="card-text"><small class="text-body-secondary">{{ prod.souscategory.category.nom }} <br> ({{ prod.souscategory.nom }})</small></p>
                         <a href="{{path('single_produit',{'id':prod.id})}}">Détails</a>
                     </div>

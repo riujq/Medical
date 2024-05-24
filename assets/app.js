@@ -12,22 +12,23 @@
 import './styles/bandef.css';
 import './styles/career.css';
 import './styles/home.css';
-import './styles/produit.css';
-import './styles/theme.css';
+import './styles/nav.css';
+
 /*
  *js import 
  */
 import searchBar from './scripts/searchBar.js';
 import popModal from './scripts/popModal.js';
-import singleProduit from './scripts/singleProduit.js';
-import theme from './scripts/theme.js';
 import admin from './scripts/admin.js';
+import nav from './scripts/nav.js';
+import {LoadTheme,switchTheme} from './scripts/theme.js';
 
-theme();
+LoadTheme();
 window.addEventListener('DOMContentLoaded', () => {
+    switchTheme();
     popModal();
     searchBar();
-    singleProduit();
+    nav();
     admin();
 });
 
